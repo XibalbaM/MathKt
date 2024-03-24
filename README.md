@@ -1,4 +1,11 @@
+![GitHub Repo stars](https://img.shields.io/github/stars/XibalbaM/MathKt)
 [![Release](https://jitpack.io/v/XibalbaM/MathKt.svg)](https://jitpack.io/#XibalbaM/MathKt)
+[![GitHub License](https://img.shields.io/github/license/XibalbaM/MathKt?color=blue)](https://github.com/XibalbaM/MathKt/blob/master/LICENSE)
+![Lines of code](https://img.shields.io/tokei/lines/github/XibalbaM/MathKt?color=green)
+![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/XibalbaM/MathKt)
+![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/XibalbaM/MathKt/total)
+![GitHub commits since latest release](https://img.shields.io/github/commits-since/XibalbaM/MathKt/latest)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/XibalbaM/MathKt)
 # Math Kt
 A kotlin library for math.
 
