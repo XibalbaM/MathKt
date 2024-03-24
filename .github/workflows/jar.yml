@@ -18,10 +18,8 @@ jobs:
           distribution: 'temurin'
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
-      - name: Allow gradlew to be executed
-        run: chmod +x ./gradlew
       - name: Generate jar
-        run: ./gradlew jar
+        run: chmod +x ./gradlew && ./gradlew jar
       - name: Upload jar
         uses: AButler/upload-release-assets@v3.0
         with:
