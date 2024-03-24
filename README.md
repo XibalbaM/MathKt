@@ -1,3 +1,4 @@
+[![Release](https://jitpack.io/v/XibalbaM/MathKt.svg)](https://jitpack.io/#XibalbaM/MathKt)
 # Math Kt
 A kotlin library for math.
 
