@@ -70,7 +70,7 @@ inline operator fun <reified T : Matrix<Float>> T.plus(other: T): T {
 inline operator fun <reified T : Matrix<Float>> T.minus(other: Float) = this.create(this.rows.map { row -> row.map { it - other } }) as T
 inline operator fun <reified T : Matrix<Float>> T.minus(other: T): T {
     require(this.rows.size == other.rows.size && this.rows[0].size == other.rows[0].size)
-    return this.rows.zip(other.rows).map { (row1, row2) -> row1.zip(row2).map { (a, b) -> a - b } } as T
+    return this.create(this.rows.zip(other.rows).map { (row1, row2) -> row1.zip(row2).map { (a, b) -> a - b } }) as T
 }
 
 inline operator fun <reified T : Matrix<Float>> T.times(other: Float) = this.create(this.rows.map { row -> row.map { it * other } }) as T
