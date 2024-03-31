@@ -49,11 +49,11 @@ fun diagonalMatrix(vararg values : Float) : SquareMatrix<Float> {
     return SquareMatrix(rows)
 }
 fun unitMatrix(size: Int) = diagonalMatrix(*FloatArray(size) { 1f })
-data class Vec2<T>(val x: T, val y: T) : ColumnMatrix<T>(listOf(x, y)) {
+class Vec2<T>(val x: T, val y: T) : ColumnMatrix<T>(listOf(x, y)) {
     override fun create(rows: List<List<T>>) = Vec2(rows[0][0], rows[1][0])
 }
 fun <T> vec2(x: T, y: T) = Vec2(x, y)
-data class Vec3<T>(val x: T, val y: T, val z: T) : ColumnMatrix<T>(listOf(x, y, z)) {
+class Vec3<T>(val x: T, val y: T, val z: T) : ColumnMatrix<T>(listOf(x, y, z)) {
     override fun create(rows: List<List<T>>) = Vec3(rows[0][0], rows[1][0], rows[2][0])
 }
 fun <T> vec3(x: T, y: T, z: T) = Vec3(x, y, z)
