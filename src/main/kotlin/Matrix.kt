@@ -78,7 +78,7 @@ operator fun <T : LineMatrix<Float>> T.times(other: ColumnMatrix<Float>): Float 
     require(this.size == other.size)
     return (0..<this.size).sumOf { this[it].toDouble() * other[it].toDouble() }.toFloat()
 }
-inline operator fun <reified T : Matrix<Float>> T.times(other: T): T {
+inline operator fun <reified T : Matrix<Float>> T.times(other: Matrix<Float>): T {
     require(this.rows[0].size == other.rows.size)
     return this.create(this.rows.map { row -> other.columns.map { column -> row.zip(column).sumOf { (a, b) -> a.toDouble() * b }.toFloat() } }) as T
 }
@@ -90,7 +90,7 @@ inline operator fun <reified T : Matrix<Float>> T.rem(other: Float) = this.creat
 operator fun <T : Matrix<Float>> T.contains(other: Float): Boolean {
     return this.rows.any { row -> row.any { it == other } }
 }
-operator fun <T : Matrix<Float>> T.contains(other: T): Boolean {
+operator fun <T : Matrix<Float>> T.contains(other: Matrix<Float>): Boolean {
     return other.rows.flatten().all { it in this }
 }
 
