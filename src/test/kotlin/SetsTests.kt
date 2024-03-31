@@ -2,6 +2,7 @@ import fr.xibalba.math.permutationSign
 import fr.xibalba.math.permutations
 import fr.xibalba.math.subsets
 import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class SetsTests {
 
@@ -36,10 +37,10 @@ class SetsTests {
     @Test
     fun permutationSign() {
         val permutation = listOf(1f, 3f, 2f)
-        assert(permutation.permutationSign() == -1)
+        assertEquals(permutation.permutationSign(), -1)
         val permutation2 = listOf(3f, 2f, 1f)
-        assert(permutation2.permutationSign() == 1)
+        assertEquals(permutation2.permutationSign(), -1)
         val permutations = setOf(1f, 2f, 3f).permutations()
-        assert(permutations.sumOf { it.permutationSign() } == 0)
+        assertEquals(permutations.sumOf { it.permutationSign() }, 0)
     }
 }
