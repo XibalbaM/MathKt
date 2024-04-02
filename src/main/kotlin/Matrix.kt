@@ -62,6 +62,7 @@ fun <T> vec4(x: T, y: T, z: T, w: T) = Vec4(x, y, z, w)
 
 typealias Vec2f = Vec2<Float>
 typealias Vec3f = Vec3<Float>
+typealias Vec4f = Vec4<Float>
 
 inline operator fun <reified T : Matrix<Float>> T.plus(other: Float) = this.create(this.rows.map { row -> row.map { it + other } }) as T
 inline operator fun <reified T : Matrix<Float>> T.plus(other: T): T {
