@@ -57,6 +57,8 @@ class Vec3<T>(val x: T, val y: T, val z: T) : ColumnMatrix<T>(listOf(x, y, z)) {
     override fun create(rows: List<List<T>>) = Vec3(rows[0][0], rows[1][0], rows[2][0])
 }
 fun <T> vec3(x: T, y: T, z: T) = Vec3(x, y, z)
+class Vec4<T>(val x: T, val y: T, val z: T, val w: T) : ColumnMatrix<T>(listOf(x, y, z, w))
+fun <T> vec4(x: T, y: T, z: T, w: T) = Vec4(x, y, z, w)
 
 typealias Vec2f = Vec2<Float>
 typealias Vec3f = Vec3<Float>
