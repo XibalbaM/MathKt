@@ -100,7 +100,8 @@ operator fun <T : Matrix<Float>> T.contains(other: Matrix<Float>): Boolean {
 
 inline fun <reified T : Matrix<Float>> T.transpose() = this.create(this.columns) as T
 
-fun pow(matrix: SquareMatrix<Float>, power: Int): SquareMatrix<Float> {
+fun pow(matrix: Matrix<Float>, power: Int): Matrix<Float> {
+    require(matrix.rows.size == matrix.columns.size)
     require(power >= 0)
     return if (power == 0) unitMatrix(matrix.rows.size) else matrix * pow(matrix, power - 1)
 }
