@@ -83,7 +83,16 @@ operator fun <T : LineMatrix<Float>> T.times(other: ColumnMatrix<Float>): Float 
 }
 inline operator fun <reified T : Matrix<Float>> T.times(other: Matrix<Float>): T {
     require(this.rows[0].size == other.rows.size)
-    return this.create(this.rows.map { row -> other.columns.map { column -> row.zip(column).sumOf { (a, b) -> a.toDouble() * b }.toFloat() } }) as T
+    val data = this.rows.map { row -> other.columns.map { column -> row.zip(column).sumOf { (a, b) -> a.toDouble() * b }.toFloat() } }
+    return try {
+        this.create(data) as T
+    } catch (e: Exception) {
+        try {
+            other.create(data) as T
+        } catch (e: Exception) {
+            Matrix(data) as T
+        }
+    }
 }
 
 inline operator fun <reified T : Matrix<Float>> T.div(other: Float) = this.create(this.rows.map { row -> row.map { it / other } }) as T
