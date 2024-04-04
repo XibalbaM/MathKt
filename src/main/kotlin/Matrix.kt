@@ -1,5 +1,7 @@
 package fr.xibalba.math
 
+import kotlin.math.sqrt
+
 open class Matrix<T>(val rows: List<List<T>>) {
     val columns get() = rows[0].indices.map { i -> rows.map { it[i] } }
 
@@ -130,4 +132,21 @@ fun SquareMatrix<Float>.inverse(): SquareMatrix<Float> {
     val determinant = this.determinant()
     require(determinant != 0f) { "Matrix is not invertible" }
     return this.adjugate() * (1 / determinant)
+}
+
+inline fun <reified T : ColumnMatrix<Float>> T.normalize() : T {
+    val length = this.length()
+    return this / length
+}
+
+fun <T : ColumnMatrix<Float>> T.length() : Float = sqrt(this.rows.sumOf { it[0].toDouble() * it[0] }).toFloat()
+
+fun Vec3f.dot(other: Vec3f) : Float = x * other.x + y * other.y + z * other.z
+
+fun Vec3f.cross(other: Vec3f) : Vec3f {
+    return vec3(
+        y * other.z - z * other.y,
+        z * other.x - x * other.z,
+        x * other.y - y * other.x
+    )
 }
