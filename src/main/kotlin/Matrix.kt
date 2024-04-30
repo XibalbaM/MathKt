@@ -53,13 +53,26 @@ fun diagonalMatrix(vararg values : Float) : SquareMatrix<Float> {
 fun unitMatrix(size: Int) = diagonalMatrix(*FloatArray(size) { 1f })
 class Vec2<T>(val x: T, val y: T) : ColumnMatrix<T>(listOf(x, y)) {
     override fun create(rows: List<List<T>>) = Vec2(rows[0][0], rows[1][0])
+    operator fun component1() = x
+    operator fun component2() = y
 }
 fun <T> vec2(x: T, y: T) = Vec2(x, y)
 class Vec3<T>(val x: T, val y: T, val z: T) : ColumnMatrix<T>(listOf(x, y, z)) {
     override fun create(rows: List<List<T>>) = Vec3(rows[0][0], rows[1][0], rows[2][0])
+
+    operator fun component1() = x
+    operator fun component2() = y
+    operator fun component3() = z
 }
 fun <T> vec3(x: T, y: T, z: T) = Vec3(x, y, z)
-class Vec4<T>(val x: T, val y: T, val z: T, val w: T) : ColumnMatrix<T>(listOf(x, y, z, w))
+class Vec4<T>(val x: T, val y: T, val z: T, val w: T) : ColumnMatrix<T>(listOf(x, y, z, w)) {
+    override fun create(rows: List<List<T>>) = Vec4(rows[0][0], rows[1][0], rows[2][0], rows[3][0])
+
+    operator fun component1() = x
+    operator fun component2() = y
+    operator fun component3() = z
+    operator fun component4() = w
+}
 fun <T> vec4(x: T, y: T, z: T, w: T) = Vec4(x, y, z, w)
 
 typealias Vec2f = Vec2<Float>
