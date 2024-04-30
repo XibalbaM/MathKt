@@ -63,13 +63,13 @@ class MatrixTests {
 
     @Test
     fun vec2() {
-        val matrix = vec2(1, 2)
+        val matrix = Vec2(1, 2)
         assertEquals(matrix, Matrix(listOf(listOf(1), listOf(2))))
     }
 
     @Test
     fun vec3() {
-        val matrix = vec3(1, 2, 3)
+        val matrix = Vec3(1, 2, 3)
         assertEquals(matrix, Matrix(listOf(listOf(1), listOf(2), listOf(3))))
     }
 
