@@ -55,16 +55,22 @@ class Vec2<T>(val x: T, val y: T) : ColumnMatrix<T>(listOf(x, y)) {
     override fun create(rows: List<List<T>>) = Vec2(rows[0][0], rows[1][0])
     operator fun component1() = x
     operator fun component2() = y
+
 }
-fun <T> vec2(x: T, y: T) = Vec2(x, y)
 class Vec3<T>(val x: T, val y: T, val z: T) : ColumnMatrix<T>(listOf(x, y, z)) {
     override fun create(rows: List<List<T>>) = Vec3(rows[0][0], rows[1][0], rows[2][0])
 
     operator fun component1() = x
     operator fun component2() = y
     operator fun component3() = z
+
+    constructor(xy: Vec2<T>, z: T) : this(xy.x, xy.y, z)
+    constructor(x: T, yz: Vec2<T>) : this(x, yz.x, yz.y)
+
+    val xy get() = Vec2(x, y)
+    val xz get() = Vec2(x, z)
+    val yz get() = Vec2(y, z)
 }
-fun <T> vec3(x: T, y: T, z: T) = Vec3(x, y, z)
 class Vec4<T>(val x: T, val y: T, val z: T, val w: T) : ColumnMatrix<T>(listOf(x, y, z, w)) {
     override fun create(rows: List<List<T>>) = Vec4(rows[0][0], rows[1][0], rows[2][0], rows[3][0])
 
@@ -72,8 +78,22 @@ class Vec4<T>(val x: T, val y: T, val z: T, val w: T) : ColumnMatrix<T>(listOf(x
     operator fun component2() = y
     operator fun component3() = z
     operator fun component4() = w
+
+    constructor(xy: Vec2<T>, z: T, w: T) : this(xy.x, xy.y, z, w)
+    constructor(x: T, yz: Vec2<T>, w: T) : this(x, yz.x, yz.y, w)
+    constructor(xyz: Vec3<T>, w: T) : this(xyz.x, xyz.y, xyz.z, w)
+
+    val xy get() = Vec2(x, y)
+    val xz get() = Vec2(x, z)
+    val xw get() = Vec2(x, w)
+    val yz get() = Vec2(y, z)
+    val yw get() = Vec2(y, w)
+    val zw get() = Vec2(z, w)
+    val xyz get() = Vec3(x, y, z)
+    val xyw get() = Vec3(x, y, w)
+    val xzw get() = Vec3(x, z, w)
+    val yzw get() = Vec3(y, z, w)
 }
-fun <T> vec4(x: T, y: T, z: T, w: T) = Vec4(x, y, z, w)
 
 typealias Vec2f = Vec2<Float>
 typealias Vec3f = Vec3<Float>
@@ -157,7 +177,7 @@ fun <T : ColumnMatrix<Float>> T.length() : Float = sqrt(this.rows.sumOf { it[0].
 fun Vec3f.dot(other: Vec3f) : Float = x * other.x + y * other.y + z * other.z
 
 fun Vec3f.cross(other: Vec3f) : Vec3f {
-    return vec3(
+    return Vec3f(
         y * other.z - z * other.y,
         z * other.x - x * other.z,
         x * other.y - y * other.x
